@@ -1,0 +1,20 @@
+.item-a {
+    grid-area: header;
+    justify-self: right;
+}
+#container {
+    height: auto;
+    width: auto;
+    text-align: center;
+    margin-top: 5em;
+}
+#buttons {
+    display: inline-grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+        "header header header header";
+    width: 200px;
+    height: 300px;
+    
+}
