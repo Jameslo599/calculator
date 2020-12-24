@@ -16,6 +16,7 @@ let multiply = function(num1, num2) {
 let divide = function(num1, num2) {
     return num1 / num2;
 }
+//Function to include all basic mathematical functions
 let operate = function(operator, num1, num2) {
     if (operator == add) {
         return add(num1, num2);
@@ -27,3 +28,56 @@ let operate = function(operator, num1, num2) {
         return divide(num1, num2);
     }
 }
+
+let display = document.getElementById("display");
+
+let zero = document.getElementById("zero");
+zero.addEventListener("click", () => {
+    let displayValue = document.createTextNode(0);
+    display.appendChild(displayValue);
+});
+let one = document.getElementById("one");
+one.addEventListener("click", () => {
+    let displayValue = document.createTextNode(1);
+    display.appendChild(displayValue);
+});
+let two = document.getElementById("two");
+two.addEventListener("click", () => {
+    let displayValue = document.createTextNode(2);
+    display.appendChild(displayValue);
+});
+let three = document.getElementById("three");
+three.addEventListener("click", () => {
+    let displayValue = document.createTextNode(3);
+    display.appendChild(displayValue);
+});
+let four = document.getElementById("four");
+four.addEventListener("click", () => {
+    let displayValue = document.createTextNode(4);
+    display.appendChild(displayValue);
+});
+let five = document.getElementById("five");
+five.addEventListener("click", () => {
+    let displayValue = document.createTextNode(5);
+    display.appendChild(displayValue);
+});
+let six = document.getElementById("six");
+six.addEventListener("click", () => {
+    let displayValue = document.createTextNode(6);
+    display.appendChild(displayValue);
+});
+let seven = document.getElementById("seven");
+seven.addEventListener("click", () => {
+    let displayValue = document.createTextNode(7);
+    display.appendChild(displayValue);
+});
+let eight = document.getElementById("eight");
+eight.addEventListener("click", () => {
+    let displayValue = document.createTextNode(8);
+    display.appendChild(displayValue);
+});
+let nine = document.getElementById("nine");
+nine.addEventListener("click", () => {
+    let displayValue = document.createTextNode(9);
+    display.appendChild(displayValue);
+});
