@@ -1,5 +1,6 @@
 let num1 = "";
 let num2 = "";
+let operator = "";
 //Add two numbers
 function add(num1, num2) {
     return num1 + num2;
@@ -18,8 +19,10 @@ function divide(num1, num2) {
 }
 //Function to include all basic mathematical functions
 function operate(operator, num1, num2) {
-    if (operator == add) {
-        return add(num1, num2);
+    if (operator == "add") {
+        removeDisplay();
+        displayValue.push(add(num1, num2));
+        input.nodeValue = arrayConversion();
     } else if (operator == subtract) {
         return subtract(num1, num2);
     } else if (operator == multiply) {
@@ -31,67 +34,94 @@ function operate(operator, num1, num2) {
 
 let display = document.getElementById("display");
 let displayValue = [];
-let zero = document.getElementById("zero");
-zero.addEventListener("click", () => {
-    let input = document.createTextNode(0);
-    display.appendChild(input);
-    displayValue.push(0)
-});
-let one = document.getElementById("one");
-one.addEventListener("click", () => {
-    let input = document.createTextNode(1);
-    display.appendChild(input);
-    displayValue.push(1);
-});
-let two = document.getElementById("two");
-two.addEventListener("click", () => {
-    let input = document.createTextNode(2);
-    display.appendChild(input);
-    displayValue.push(2)
-});
-let three = document.getElementById("three");
-three.addEventListener("click", () => {
-    let input = document.createTextNode(3);
-    display.appendChild(input);
-    displayValue.push(3)
-});
-let four = document.getElementById("four");
-four.addEventListener("click", () => {
-    let input = document.createTextNode(4);
-    display.appendChild(input);
-    displayValue.push(4)
-});
-let five = document.getElementById("five");
-five.addEventListener("click", () => {
-    let input = document.createTextNode(5);
-    display.appendChild(input);
-    displayValue.push(5)
-});
-let six = document.getElementById("six");
-six.addEventListener("click", () => {
-    let input = document.createTextNode(6);
-    display.appendChild(input);
-    displayValue.push(6)
-});
-let seven = document.getElementById("seven");
-seven.addEventListener("click", () => {
-    let input = document.createTextNode(7);
-    display.appendChild(input);
-    displayValue.push(7)
-});
-let eight = document.getElementById("eight");
-eight.addEventListener("click", () => {
-    let input = document.createTextNode(8);
-    display.appendChild(input);
-    displayValue.push(8)
-});
-let nine = document.getElementById("nine");
-nine.addEventListener("click", () => {
-    let input = document.createTextNode(9);
-    display.appendChild(input);
-    displayValue.push("9")
-});
 function arrayConversion() {
     number = Number(displayValue.join(""));
     return number;
+}
+let input = document.createTextNode(0);
+display.appendChild(input);
+
+function removeDisplay() {
+    input.nodeValue = 0;
+    displayValue = [];
+}
+
+let zero = document.getElementById("zero");
+zero.addEventListener("click", () => {
+    displayValue.push(0);
+    input.nodeValue = arrayConversion();
+});
+
+let one = document.getElementById("one");
+one.addEventListener("click", () => {
+    displayValue.push(1);
+    input.nodeValue = arrayConversion();
+});
+
+let two = document.getElementById("two");
+two.addEventListener("click", () => {
+    displayValue.push(2);
+    input.nodeValue = arrayConversion();
+});
+
+let three = document.getElementById("three");
+three.addEventListener("click", () => {
+    displayValue.push(3);
+    input.nodeValue = arrayConversion();
+});
+
+let four = document.getElementById("four");
+four.addEventListener("click", () => {
+    displayValue.push(4);
+    input.nodeValue = arrayConversion();
+});
+
+let five = document.getElementById("five");
+five.addEventListener("click", () => {
+    displayValue.push(5);
+    input.nodeValue = arrayConversion();
+});
+
+let six = document.getElementById("six");
+six.addEventListener("click", () => {
+    displayValue.push(6);
+    input.nodeValue = arrayConversion();
+});
+
+let seven = document.getElementById("seven");
+seven.addEventListener("click", () => {
+    displayValue.push(7);
+    input.nodeValue = arrayConversion();
+});
+
+let eight = document.getElementById("eight");
+eight.addEventListener("click", () => {
+    displayValue.push(8);
+    input.nodeValue = arrayConversion();
+});
+
+let nine = document.getElementById("nine");
+nine.addEventListener("click", () => {
+    displayValue.push(9);
+    input.nodeValue = arrayConversion();
+});
+
+let clear = document.getElementById("clear");
+clear.addEventListener("click", removeDisplay);
+
+let plus = document.getElementById("plus");
+plus.addEventListener("click", toAdd);
+
+function toAdd() {
+    operator = "add";
+    num1 = arrayConversion();
+    removeDisplay();
+}
+
+let equal = document.getElementById("equal");
+equal.addEventListener("click", toEqual);
+
+function toEqual() {
+    num2 = arrayConversion();
+    operate(operator, num1, num2);
 }
