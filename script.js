@@ -4,6 +4,7 @@ let num2 = "";
 let operator = "";
 let newEquation = "";
 let decimalPoint = false;
+let negativeNumber = false;
 //Add two numbers
 function add(num1, num2) {
     return num1 + num2;
@@ -77,11 +78,11 @@ zero.addEventListener("click", () => {
     if (newEquation == true) {
         fullClear();
         displayValue.push(0);
-        input.nodeValue = arrayConversion();
+        input.nodeValue = displayValue.join("");
         newEquation = false;
     } else {
         displayValue.push(0);
-        input.nodeValue = arrayConversion();
+        input.nodeValue = displayValue.join("");
     }
 });
 
@@ -209,8 +210,18 @@ decimal.addEventListener("click", () => {
     } else {
         displayValue.push(".");
         input.nodeValue = displayValue.join("");
-        //Number((input.nodeValue).toFixed());
         return decimalPoint = true;
+    }
+});
+
+let negative = document.getElementById("negative");
+negative.addEventListener("click", () => {
+    if (negativeNumber == true) {
+        input.nodeValue = Math.abs(arrayConversion());
+        return negativeNumber = false;
+    } else {
+        input.nodeValue = -Math.abs(arrayConversion());
+        return negativeNumber = true;
     }
 });
 
