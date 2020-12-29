@@ -50,7 +50,7 @@ function operate(operator, num1, num2) {
     } else if (operator == "power") {
         removeDisplay();
         displayValue.push(power(num1, num2));
-        input.nodeValue = arrayConversion();
+        input.nodeValue = power(num1, num2);
     }
 }
 
@@ -81,7 +81,6 @@ function arrayConversion2() {
 }
 let input = document.createTextNode(0);
 display.appendChild(input);
-
 function removeDisplay() {
     input.nodeValue = num1;
     displayValue = [];
@@ -104,7 +103,10 @@ zero.addEventListener("click", () => {
         displayValue.push(0);
         input.nodeValue = displayValue.join("");
         newEquation = false;
-    } else {
+    } else if (negativeNumber == true) {
+        displayValue.push(0);
+        input.nodeValue = -Math.abs(displayValue.join(""));
+        } else {
         displayValue.push(0);
         input.nodeValue = displayValue.join("");
     }
@@ -117,7 +119,10 @@ one.addEventListener("click", () => {
         displayValue.push(1);
         input.nodeValue = displayValue.join("");
         newEquation = false;
-    } else {
+    } else if (negativeNumber == true) {
+        displayValue.push(1);
+        input.nodeValue = -Math.abs(displayValue.join(""));
+        } else {
         displayValue.push(1);
         input.nodeValue = displayValue.join("");
     }
@@ -130,7 +135,10 @@ two.addEventListener("click", () => {
         displayValue.push(2);
         input.nodeValue = displayValue.join("");
         newEquation = false;
-    } else {
+    } else if (negativeNumber == true) {
+        displayValue.push(2);
+        input.nodeValue = -Math.abs(displayValue.join(""));
+        } else {
         displayValue.push(2);
         input.nodeValue = displayValue.join("");
     }
@@ -143,7 +151,10 @@ three.addEventListener("click", () => {
         displayValue.push(3);
         input.nodeValue = displayValue.join("");
         newEquation = false;
-    } else {
+    } else if (negativeNumber == true) {
+        displayValue.push(3);
+        input.nodeValue = -Math.abs(displayValue.join(""));
+        } else {
         displayValue.push(3);
         input.nodeValue = displayValue.join("");
     }
@@ -156,7 +167,10 @@ four.addEventListener("click", () => {
         displayValue.push(4);
         input.nodeValue = displayValue.join("");
         newEquation = false;
-    } else {
+    } else if (negativeNumber == true) {
+        displayValue.push(4);
+        input.nodeValue = -Math.abs(displayValue.join(""));
+        } else {
         displayValue.push(4);
         input.nodeValue = displayValue.join("");
     }
@@ -169,7 +183,10 @@ five.addEventListener("click", () => {
         displayValue.push(5);
         input.nodeValue = displayValue.join("");
         newEquation = false;
-    } else {
+    } else if (negativeNumber == true) {
+        displayValue.push(5);
+        input.nodeValue = -Math.abs(displayValue.join(""));
+        } else {
         displayValue.push(5);
         input.nodeValue = displayValue.join("");
     }
@@ -182,7 +199,10 @@ six.addEventListener("click", () => {
         displayValue.push(6);
         input.nodeValue = displayValue.join("");
         newEquation = false;
-    } else {
+    } else if (negativeNumber == true) {
+        displayValue.push(6);
+        input.nodeValue = -Math.abs(displayValue.join(""));
+        } else {
         displayValue.push(6);
         input.nodeValue = displayValue.join("");
     }
@@ -195,7 +215,10 @@ seven.addEventListener("click", () => {
         displayValue.push(7);
         input.nodeValue = displayValue.join("");
         newEquation = false;
-    } else {
+    } else if (negativeNumber == true) {
+        displayValue.push(7);
+        input.nodeValue = -Math.abs(displayValue.join(""));
+        } else {
         displayValue.push(7);
         input.nodeValue = displayValue.join("");
     }
@@ -208,7 +231,10 @@ eight.addEventListener("click", () => {
         displayValue.push(8);
         input.nodeValue = displayValue.join("");        
         newEquation = false;
-    } else {
+    } else if (negativeNumber == true) {
+        displayValue.push(8);
+        input.nodeValue = -Math.abs(displayValue.join(""));
+        } else {
         displayValue.push(8);
         input.nodeValue = displayValue.join("");    }
 });
@@ -220,18 +246,13 @@ nine.addEventListener("click", () => {
         displayValue.push(9);
         input.nodeValue = displayValue.join("");
         newEquation = false;
-    } else {
+    } else if (negativeNumber == true) {
+        displayValue.push(9);
+        input.nodeValue = -Math.abs(displayValue.join(""));
+        } else {
         displayValue.push(9);
         input.nodeValue = displayValue.join("");
     }
-});
-
-let exponent = document.getElementById("exponent");
-exponent.addEventListener("click", () => {
-    operator = "power";
-    num1 = arrayConversion();
-    displayValue.push("^");
-    input.nodeValue = displayValue.join("");
 });
 
 let decimal = document.getElementById("decimal");
@@ -268,82 +289,98 @@ clear.addEventListener("click", () => {
 let plus = document.getElementById("plus");
 plus.addEventListener("click", toAdd);
 function toAdd() {
-    newEquation = false;
     decimalPoint = false;
-    if (num1 != "") {
+    if (operator == "add") {
+        num2 = arrayConversion();
+        toEqual();
+        num1 = arrayConversion() || num1;
+        displayValue = [];
+    } else {
+        num2 = arrayConversion();
         toEqual();
         operator = "add";
-        num1 = arrayConversion();
+        num1 = arrayConversion() || num1;
         negativeNumber = false;
-        num2 = "";
-        removeDisplay();
-    }  else {
-        operator = "add";
-        num1 = arrayConversion();
-        negativeNumber = false;
-        removeDisplay();
+        displayValue.push("+");
+        input.nodeValue = num1 + "+";
+        displayValue = [];
     }
-}
+};
 
 let minus = document.getElementById("subtract");
 minus.addEventListener("click", toSubtract);
 function toSubtract() {
-    newEquation = false;
     decimalPoint = false;
-    if (num1 != "") {
+    if (operator == "subtract") {
+        num2 = arrayConversion();
+        toEqual();
+        num1 = arrayConversion() || num1;
+        displayValue = [];
+    } else {
+        num2 = arrayConversion();
         toEqual();
         operator = "subtract";
-        num1 = arrayConversion();
+        num1 = arrayConversion() || num1;
         negativeNumber = false;
-        num2 = "";
-        removeDisplay();
-    } else {
-        operator = "subtract";
-        num1 = arrayConversion();
-        negativeNumber = false;
-        removeDisplay();
+        displayValue.push("-");
+        input.nodeValue = num1 + "-";
+        displayValue = [];
     }
-}
+};
 
 let product = document.getElementById("multiply");
 product.addEventListener("click", toMultiply);
 function toMultiply() {
-    newEquation = false;
     decimalPoint = false;
-    if (num1 != "") {
+    if (operator == "multiply") {
+        num2 = arrayConversion();
+        toEqual();
+        num1 = arrayConversion() || num1;
+        displayValue = [];
+    } else {
+        num2 = arrayConversion();
         toEqual();
         operator = "multiply";
-        num1 = arrayConversion();
+        num1 = arrayConversion() || num1;
         negativeNumber = false;
-        num2 = "";
-        removeDisplay();
-    } else {
-        operator = "multiply";
-        num1 = arrayConversion();
-        negativeNumber = false;
-        removeDisplay();
+        displayValue.push("*");
+        input.nodeValue = num1 + "*";
+        displayValue = [];
     }
-}
+};
 
 let quotient = document.getElementById("divide");
 quotient.addEventListener("click", toDivide);
 function toDivide() {
-    newEquation = false;
     decimalPoint = false;
-    if (num1 != "") {
+    if (operator == "divide") {
+        num2 = arrayConversion();
+        toEqual();
+        num1 = arrayConversion() || num1;
+        displayValue = [];
+    } else {
+        num2 = arrayConversion();
         toEqual();
         operator = "divide";
-        num1 = arrayConversion();
+        num1 = arrayConversion() || num1;
         negativeNumber = false;
-        num2 = "";
-        removeDisplay();
-    } else { 
-        operator = "divide";
-        num1 = arrayConversion();
-        negativeNumber = false;
-        removeDisplay();
+        displayValue.push("/");
+        input.nodeValue = num1 + "/";
+        displayValue = [];
     }
-}
+};
+
+let exponent = document.getElementById("exponent");
+exponent.addEventListener("click", () => {
+    decimalPoint = false;
+    operator = "power";
+    num1 = arrayConversion() || num1;
+    negativeNumber = false;
+    displayValue.push("^");
+    input.nodeValue = num1 + "^";
+    displayValue = [];
+    num2 = "";
+});
 
 let equal = document.getElementById("equal");
 equal.addEventListener("click", () => {
@@ -359,7 +396,7 @@ equal.addEventListener("click", () => {
             num1 = "";
             newEquation = true;
     } else if (operator == "power") {
-        num2 = arrayConversion2();
+        num2 = arrayConversion();
         operate(operator, num1, num2);
         num1 = "";
         newEquation = true;
@@ -367,7 +404,10 @@ equal.addEventListener("click", () => {
 });
 
 function toEqual() {
-        num2 = arrayConversion();
+    if (num2 == "") {
+        return;
+    } else {
         operate(operator, num1, num2);
         decimalPoint = false;
+    }
 }
