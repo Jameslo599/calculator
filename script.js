@@ -34,23 +34,23 @@ function operate(operator, num1, num2) {
     if (operator == "add") {
         removeDisplay();
         displayValue.push(add(num1, num2));
-        input.nodeValue = add(num1, num2);
+        input.nodeValue = Math.round((add(num1, num2)) * 10000000)/10000000;
     } else if (operator == "subtract") {
         removeDisplay();
         displayValue.push(subtract(num1, num2));
-        input.nodeValue = subtract(num1, num2);
+        input.nodeValue = Math.round((subtract(num1, num2)) * 10000000)/10000000;
     } else if (operator == "multiply") {
         removeDisplay();
         displayValue.push(multiply(num1, num2));
-        input.nodeValue = multiply(num1, num2);
+        input.nodeValue = Math.round((multiply(num1, num2)) * 10000000)/10000000;
     } else if (operator == "divide") {
         removeDisplay();
         displayValue.push(divide(num1, num2));
-        input.nodeValue = divide(num1, num2);
+        input.nodeValue = Math.round((divide(num1, num2)) * 10000000)/10000000;
     } else if (operator == "power") {
         removeDisplay();
         displayValue.push(power(num1, num2));
-        input.nodeValue = power(num1, num2);
+        input.nodeValue = Math.round((power(num1, num2)) * 10000000)/10000000;
     }
 }
 
@@ -62,21 +62,21 @@ function arrayConversion() {
         removeDisplay();
     } else if (negativeNumber == true) {
         number = Number(displayValue.join(""));
-        return -Math.abs(Math.round((number + Number.EPSILON) * 100000000)/100000000);
+        return -Math.abs(Math.round((number) * 10000000)/10000000);
     } else { 
         number = Number(displayValue.join(""));
-        return Math.round((number + Number.EPSILON) * 100000000)/100000000;
+        return Math.round((number) * 10000000)/10000000;
     }
 }
 function arrayConversion2() {
     if (negativeNumber == true) {
         number = displayValue.join("").split("^").join("");
         finalNum = Number(number.replace(num1, ""));
-        return -Math.abs(Math.round((finalNum + Number.EPSILON) * 100000000)/100000000);
+        return -Math.abs(Math.round((finalNum) * 10000000)/10000000);
     } else {
         number = displayValue.join("").split("^").join("");
         finalNum = Number(number.replace(num1, ""));
-        return Math.round((finalNum + Number.EPSILON) * 100000000)/100000000;
+        return Math.round((finalNum) * 10000000)/10000000;
     }
 }
 let input = document.createTextNode(0);
@@ -94,6 +94,7 @@ function fullClear() {
     decimalPoint = false;
     operator = "";
     negativeNumber = false;
+    newEquation = false;
 }
 
 let zero = document.getElementById("zero");
@@ -259,7 +260,12 @@ let decimal = document.getElementById("decimal");
 decimal.addEventListener("click", () => {
     if (decimalPoint == true) {
         return;
-    } else {
+    } else if (displayValue == 0) {
+        displayValue.push(0);
+        displayValue.push(".");
+        input.nodeValue = displayValue.join("");
+        return decimalPoint = true
+    }   else {
         displayValue.push(".");
         input.nodeValue = displayValue.join("");
         return decimalPoint = true;
@@ -284,6 +290,7 @@ let clear = document.getElementById("clear");
 clear.addEventListener("click", () => {
     input.nodeValue = 0;
     displayValue = [];
+    decimalPoint = false;
 });
 
 let plus = document.getElementById("plus");
@@ -384,7 +391,6 @@ exponent.addEventListener("click", () => {
 
 let equal = document.getElementById("equal");
 equal.addEventListener("click", () => {
-    decimalPoint = false;
     if (num1 != "" && operator != "power") {
             num2 = arrayConversion();
             operate(operator, num1, num2);
