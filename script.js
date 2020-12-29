@@ -25,24 +25,32 @@ function divide(num1, num2) {
         return num1 / num2;
     }
 }
+//Raise first number to the power of second number
+function power(num1, num2) {
+    return num1**num2;
+}
 //Function to include all basic mathematical functions
 function operate(operator, num1, num2) {
     if (operator == "add") {
         removeDisplay();
         displayValue.push(add(num1, num2));
-        input.nodeValue = arrayConversion();
+        input.nodeValue = add(num1, num2);
     } else if (operator == "subtract") {
         removeDisplay();
         displayValue.push(subtract(num1, num2));
-        input.nodeValue = arrayConversion()
+        input.nodeValue = subtract(num1, num2);
     } else if (operator == "multiply") {
         removeDisplay();
         displayValue.push(multiply(num1, num2));
-        input.nodeValue = arrayConversion()
+        input.nodeValue = multiply(num1, num2);
     } else if (operator == "divide") {
         removeDisplay();
         displayValue.push(divide(num1, num2));
-        input.nodeValue = arrayConversion()
+        input.nodeValue = divide(num1, num2);
+    } else if (operator == "power") {
+        removeDisplay();
+        displayValue.push(power(num1, num2));
+        input.nodeValue = arrayConversion();
     }
 }
 
@@ -52,10 +60,24 @@ function arrayConversion() {
     if (displayValue == "Cannot divide by 0") {
         number = displayValue.join("");
         removeDisplay();
+    } else if (negativeNumber == true) {
+        number = Number(displayValue.join(""));
+        return -Math.abs(Math.round((number + Number.EPSILON) * 100000000)/100000000);
     } else { 
         number = Number(displayValue.join(""));
+        return Math.round((number + Number.EPSILON) * 100000000)/100000000;
     }
-    return Math.round((number + Number.EPSILON) * 100000000)/100000000;
+}
+function arrayConversion2() {
+    if (negativeNumber == true) {
+        number = displayValue.join("").split("^").join("");
+        finalNum = Number(number.replace(num1, ""));
+        return -Math.abs(Math.round((finalNum + Number.EPSILON) * 100000000)/100000000);
+    } else {
+        number = displayValue.join("").split("^").join("");
+        finalNum = Number(number.replace(num1, ""));
+        return Math.round((finalNum + Number.EPSILON) * 100000000)/100000000;
+    }
 }
 let input = document.createTextNode(0);
 display.appendChild(input);
@@ -71,6 +93,8 @@ function fullClear() {
     num1 = "";
     num2 = "";
     decimalPoint = false;
+    operator = "";
+    negativeNumber = false;
 }
 
 let zero = document.getElementById("zero");
@@ -91,11 +115,11 @@ one.addEventListener("click", () => {
     if (newEquation == true) {
         fullClear();
         displayValue.push(1);
-        input.nodeValue = arrayConversion();
+        input.nodeValue = displayValue.join("");
         newEquation = false;
     } else {
         displayValue.push(1);
-        input.nodeValue = arrayConversion();
+        input.nodeValue = displayValue.join("");
     }
 });
 
@@ -104,11 +128,11 @@ two.addEventListener("click", () => {
     if (newEquation == true) {
         fullClear();
         displayValue.push(2);
-        input.nodeValue = arrayConversion();
+        input.nodeValue = displayValue.join("");
         newEquation = false;
     } else {
         displayValue.push(2);
-        input.nodeValue = arrayConversion();
+        input.nodeValue = displayValue.join("");
     }
 });
 
@@ -117,11 +141,11 @@ three.addEventListener("click", () => {
     if (newEquation == true) {
         fullClear();
         displayValue.push(3);
-        input.nodeValue = arrayConversion();
+        input.nodeValue = displayValue.join("");
         newEquation = false;
     } else {
         displayValue.push(3);
-        input.nodeValue = arrayConversion();
+        input.nodeValue = displayValue.join("");
     }
 });
 
@@ -130,11 +154,11 @@ four.addEventListener("click", () => {
     if (newEquation == true) {
         fullClear();
         displayValue.push(4);
-        input.nodeValue = arrayConversion();
+        input.nodeValue = displayValue.join("");
         newEquation = false;
     } else {
         displayValue.push(4);
-        input.nodeValue = arrayConversion();
+        input.nodeValue = displayValue.join("");
     }
 });
 
@@ -143,11 +167,11 @@ five.addEventListener("click", () => {
     if (newEquation == true) {
         fullClear();
         displayValue.push(5);
-        input.nodeValue = arrayConversion();
+        input.nodeValue = displayValue.join("");
         newEquation = false;
     } else {
         displayValue.push(5);
-        input.nodeValue = arrayConversion();
+        input.nodeValue = displayValue.join("");
     }
 });
 
@@ -156,11 +180,11 @@ six.addEventListener("click", () => {
     if (newEquation == true) {
         fullClear();
         displayValue.push(6);
-        input.nodeValue = arrayConversion();
+        input.nodeValue = displayValue.join("");
         newEquation = false;
     } else {
         displayValue.push(6);
-        input.nodeValue = arrayConversion();
+        input.nodeValue = displayValue.join("");
     }
 });
 
@@ -169,11 +193,11 @@ seven.addEventListener("click", () => {
     if (newEquation == true) {
         fullClear();
         displayValue.push(7);
-        input.nodeValue = arrayConversion();
+        input.nodeValue = displayValue.join("");
         newEquation = false;
     } else {
         displayValue.push(7);
-        input.nodeValue = arrayConversion();
+        input.nodeValue = displayValue.join("");
     }
 });
 
@@ -182,12 +206,11 @@ eight.addEventListener("click", () => {
     if (newEquation == true) {
         fullClear();
         displayValue.push(8);
-        input.nodeValue = arrayConversion();
+        input.nodeValue = displayValue.join("");        
         newEquation = false;
     } else {
         displayValue.push(8);
-        input.nodeValue = arrayConversion();
-    }
+        input.nodeValue = displayValue.join("");    }
 });
 
 let nine = document.getElementById("nine");
@@ -195,12 +218,20 @@ nine.addEventListener("click", () => {
     if (newEquation == true) {
         fullClear();
         displayValue.push(9);
-        input.nodeValue = arrayConversion();
+        input.nodeValue = displayValue.join("");
         newEquation = false;
     } else {
         displayValue.push(9);
-        input.nodeValue = arrayConversion();
+        input.nodeValue = displayValue.join("");
     }
+});
+
+let exponent = document.getElementById("exponent");
+exponent.addEventListener("click", () => {
+    operator = "power";
+    num1 = arrayConversion();
+    displayValue.push("^");
+    input.nodeValue = displayValue.join("");
 });
 
 let decimal = document.getElementById("decimal");
@@ -225,8 +256,14 @@ negative.addEventListener("click", () => {
     }
 });
 
+let allClear = document.getElementById("allClear");
+allClear.addEventListener("click", fullClear);
+
 let clear = document.getElementById("clear");
-clear.addEventListener("click", fullClear);
+clear.addEventListener("click", () => {
+    input.nodeValue = 0;
+    displayValue = [];
+});
 
 let plus = document.getElementById("plus");
 plus.addEventListener("click", toAdd);
@@ -237,11 +274,13 @@ function toAdd() {
         toEqual();
         operator = "add";
         num1 = arrayConversion();
+        negativeNumber = false;
         num2 = "";
         removeDisplay();
     }  else {
         operator = "add";
         num1 = arrayConversion();
+        negativeNumber = false;
         removeDisplay();
     }
 }
@@ -255,11 +294,13 @@ function toSubtract() {
         toEqual();
         operator = "subtract";
         num1 = arrayConversion();
+        negativeNumber = false;
         num2 = "";
         removeDisplay();
     } else {
         operator = "subtract";
         num1 = arrayConversion();
+        negativeNumber = false;
         removeDisplay();
     }
 }
@@ -273,11 +314,13 @@ function toMultiply() {
         toEqual();
         operator = "multiply";
         num1 = arrayConversion();
+        negativeNumber = false;
         num2 = "";
         removeDisplay();
     } else {
         operator = "multiply";
         num1 = arrayConversion();
+        negativeNumber = false;
         removeDisplay();
     }
 }
@@ -291,11 +334,13 @@ function toDivide() {
         toEqual();
         operator = "divide";
         num1 = arrayConversion();
+        negativeNumber = false;
         num2 = "";
         removeDisplay();
     } else { 
         operator = "divide";
         num1 = arrayConversion();
+        negativeNumber = false;
         removeDisplay();
     }
 }
@@ -303,7 +348,7 @@ function toDivide() {
 let equal = document.getElementById("equal");
 equal.addEventListener("click", () => {
     decimalPoint = false;
-    if (num1 != "") {
+    if (num1 != "" && operator != "power") {
             num2 = arrayConversion();
             operate(operator, num1, num2);
             num1 = "";
@@ -313,7 +358,12 @@ equal.addEventListener("click", () => {
             operate(operator, num1, num2);
             num1 = "";
             newEquation = true;
-    }
+    } else if (operator == "power") {
+        num2 = arrayConversion2();
+        operate(operator, num1, num2);
+        num1 = "";
+        newEquation = true;
+}
 });
 
 function toEqual() {
