@@ -3,7 +3,6 @@ let num1 = "";
 let num2 = "";
 let operator = "";
 let newEquation = "";
-let decimalPoint = false;
 let negativeNumber = false;
 //Add two numbers
 function add(num1, num2) {
@@ -19,11 +18,7 @@ function multiply(num1, num2) {
 }
 //Divide two numbers
 function divide(num1, num2) {
-    if (num2 == 0) {
-        return "Cannot divide by 0";
-    } else { 
-        return num1 / num2;
-    }
+    return num1 / num2;
 }
 //Raise first number to the power of second number
 function power(num1, num2) {
@@ -45,22 +40,25 @@ function operate(operator, num1, num2) {
         input.nodeValue = Math.round((multiply(num1, num2)) * 10000000)/10000000;
     } else if (operator == "divide") {
         removeDisplay();
+        if (num2 == 0) {
+            displayValue = [];
+            displayValue.push("ERROR x/0");
+            input.nodeValue = displayValue.join("");
+        } else {
         displayValue.push(divide(num1, num2));
         input.nodeValue = Math.round((divide(num1, num2)) * 10000000)/10000000;
+        }
     } else if (operator == "power") {
         removeDisplay();
         displayValue.push(power(num1, num2));
         input.nodeValue = Math.round((power(num1, num2)) * 10000000)/10000000;
     }
 }
-
+//Displays number on calculater screen converted from array
 let display = document.getElementById("display");
 let displayValue = [];
 function arrayConversion() {
-    if (displayValue == "Cannot divide by 0") {
-        number = displayValue.join("");
-        removeDisplay();
-    } else if (negativeNumber == true) {
+    if (negativeNumber == true) {
         number = Number(displayValue.join(""));
         return -Math.abs(Math.round((number) * 10000000)/10000000);
     } else { 
@@ -68,35 +66,24 @@ function arrayConversion() {
         return Math.round((number) * 10000000)/10000000;
     }
 }
-function arrayConversion2() {
-    if (negativeNumber == true) {
-        number = displayValue.join("").split("^").join("");
-        finalNum = Number(number.replace(num1, ""));
-        return -Math.abs(Math.round((finalNum) * 10000000)/10000000);
-    } else {
-        number = displayValue.join("").split("^").join("");
-        finalNum = Number(number.replace(num1, ""));
-        return Math.round((finalNum) * 10000000)/10000000;
-    }
-}
 let input = document.createTextNode(0);
 display.appendChild(input);
+//Stores previous input number on calculator screen
 function removeDisplay() {
     input.nodeValue = num1;
     displayValue = [];
 }
-
+//Completely resets calculator
 function fullClear() {
     input.nodeValue = 0;
     displayValue = [];
     num1 = "";
     num2 = "";
-    decimalPoint = false;
     operator = "";
     negativeNumber = false;
     newEquation = false;
 }
-
+//Numerical buttons
 let zero = document.getElementById("zero");
 zero.addEventListener("click", () => {
     if (newEquation == true) {
@@ -112,7 +99,6 @@ zero.addEventListener("click", () => {
         input.nodeValue = displayValue.join("");
     }
 });
-
 let one = document.getElementById("one");
 one.addEventListener("click", () => {
     if (newEquation == true) {
@@ -128,7 +114,6 @@ one.addEventListener("click", () => {
         input.nodeValue = displayValue.join("");
     }
 });
-
 let two = document.getElementById("two");
 two.addEventListener("click", () => {
     if (newEquation == true) {
@@ -144,7 +129,6 @@ two.addEventListener("click", () => {
         input.nodeValue = displayValue.join("");
     }
 });
-
 let three = document.getElementById("three");
 three.addEventListener("click", () => {
     if (newEquation == true) {
@@ -160,7 +144,6 @@ three.addEventListener("click", () => {
         input.nodeValue = displayValue.join("");
     }
 });
-
 let four = document.getElementById("four");
 four.addEventListener("click", () => {
     if (newEquation == true) {
@@ -176,7 +159,6 @@ four.addEventListener("click", () => {
         input.nodeValue = displayValue.join("");
     }
 });
-
 let five = document.getElementById("five");
 five.addEventListener("click", () => {
     if (newEquation == true) {
@@ -192,7 +174,6 @@ five.addEventListener("click", () => {
         input.nodeValue = displayValue.join("");
     }
 });
-
 let six = document.getElementById("six");
 six.addEventListener("click", () => {
     if (newEquation == true) {
@@ -208,7 +189,6 @@ six.addEventListener("click", () => {
         input.nodeValue = displayValue.join("");
     }
 });
-
 let seven = document.getElementById("seven");
 seven.addEventListener("click", () => {
     if (newEquation == true) {
@@ -224,7 +204,6 @@ seven.addEventListener("click", () => {
         input.nodeValue = displayValue.join("");
     }
 });
-
 let eight = document.getElementById("eight");
 eight.addEventListener("click", () => {
     if (newEquation == true) {
@@ -239,7 +218,6 @@ eight.addEventListener("click", () => {
         displayValue.push(8);
         input.nodeValue = displayValue.join("");    }
 });
-
 let nine = document.getElementById("nine");
 nine.addEventListener("click", () => {
     if (newEquation == true) {
@@ -255,48 +233,55 @@ nine.addEventListener("click", () => {
         input.nodeValue = displayValue.join("");
     }
 });
-
+//Decimal button
 let decimal = document.getElementById("decimal");
 decimal.addEventListener("click", () => {
-    if (decimalPoint == true) {
+    if (displayValue.includes(".")) {
         return;
     } else if (displayValue == 0) {
         displayValue.push(0);
         displayValue.push(".");
         input.nodeValue = displayValue.join("");
-        return decimalPoint = true
-    }   else {
+    } else {
         displayValue.push(".");
         input.nodeValue = displayValue.join("");
-        return decimalPoint = true;
     }
 });
-
+    
+//Toggle negative number or positive number
 let negative = document.getElementById("negative");
 negative.addEventListener("click", () => {
     if (negativeNumber == true) {
-        input.nodeValue = Math.abs(arrayConversion());
+        displayValue.splice(0, 1);
+        Math.abs(arrayConversion());
+        input.nodeValue = displayValue.join("");
         return negativeNumber = false;
     } else {
-        input.nodeValue = -Math.abs(arrayConversion());
+        displayValue.unshift("-");
+        -Math.abs(arrayConversion())
+        input.nodeValue = displayValue.join("");
         return negativeNumber = true;
     }
 });
-
+//All clear button
 let allClear = document.getElementById("allClear");
 allClear.addEventListener("click", fullClear);
-
+//Clears current inputed number
 let clear = document.getElementById("clear");
 clear.addEventListener("click", () => {
     input.nodeValue = 0;
     displayValue = [];
-    decimalPoint = false;
 });
-
+//Removes last inputted value from calculator screen
+let backSpace = document.getElementById("backSpace");
+backSpace.addEventListener("click", () => {
+    displayValue.splice(-1, 1);
+    input.nodeValue = displayValue.join("");
+})
+//Plus operation
 let plus = document.getElementById("plus");
 plus.addEventListener("click", toAdd);
 function toAdd() {
-    decimalPoint = false;
     if (operator == "add") {
         num2 = arrayConversion();
         toEqual();
@@ -313,11 +298,10 @@ function toAdd() {
         displayValue = [];
     }
 };
-
+//Minus operation
 let minus = document.getElementById("subtract");
 minus.addEventListener("click", toSubtract);
 function toSubtract() {
-    decimalPoint = false;
     if (operator == "subtract") {
         num2 = arrayConversion();
         toEqual();
@@ -334,11 +318,10 @@ function toSubtract() {
         displayValue = [];
     }
 };
-
+//Multiply operation
 let product = document.getElementById("multiply");
 product.addEventListener("click", toMultiply);
 function toMultiply() {
-    decimalPoint = false;
     if (operator == "multiply") {
         num2 = arrayConversion();
         toEqual();
@@ -355,11 +338,10 @@ function toMultiply() {
         displayValue = [];
     }
 };
-
+//Divide operation
 let quotient = document.getElementById("divide");
 quotient.addEventListener("click", toDivide);
 function toDivide() {
-    decimalPoint = false;
     if (operator == "divide") {
         num2 = arrayConversion();
         toEqual();
@@ -376,10 +358,9 @@ function toDivide() {
         displayValue = [];
     }
 };
-
+//Power operation
 let exponent = document.getElementById("exponent");
 exponent.addEventListener("click", () => {
-    decimalPoint = false;
     operator = "power";
     num1 = arrayConversion() || num1;
     negativeNumber = false;
@@ -388,7 +369,7 @@ exponent.addEventListener("click", () => {
     displayValue = [];
     num2 = "";
 });
-
+//Executes selected operation if equals button is pressed
 let equal = document.getElementById("equal");
 equal.addEventListener("click", () => {
     if (num1 != "" && operator != "power") {
@@ -408,12 +389,11 @@ equal.addEventListener("click", () => {
         newEquation = true;
 }
 });
-
+//Executes selected operation if an operator button is pressed
 function toEqual() {
     if (num2 == "") {
         return;
     } else {
         operate(operator, num1, num2);
-        decimalPoint = false;
     }
 }
