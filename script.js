@@ -278,6 +278,12 @@ backSpace.addEventListener("click", () => {
     displayValue.splice(-1, 1);
     input.nodeValue = displayValue.join("");
 })
+window.addEventListener("keydown", (event) => {
+    if (event.code == "Backspace") {
+        displayValue.splice(-1, 1);
+        input.nodeValue = displayValue.join("");
+    }
+})
 //Plus operation
 let plus = document.getElementById("plus");
 plus.addEventListener("click", toAdd);
