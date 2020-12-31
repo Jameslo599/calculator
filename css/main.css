@@ -1,4 +1,7 @@
 body {
+    background-image: url(trianglify-image.png);
+    background-repeat: no-repeat;
+    background-size: auto;
     background-color: rgb(110, 110, 228);
 }
 .item-a {
@@ -34,7 +37,7 @@ body {
     height: auto;
     width: auto;
     text-align: center;
-    
+    margin-top: 50px;
 }
 #buttons {
     display: inline-grid;
@@ -51,8 +54,6 @@ body {
     background-color: rgb(66, 64, 63);
     padding: 50px 90px 50px 50px;
     border: 4px solid black;
-    
-    
 }
 #buttons button {
     width: 60px;

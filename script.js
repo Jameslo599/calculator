@@ -83,7 +83,7 @@ function fullClear() {
     negativeNumber = false;
     newEquation = false;
 }
-//Numerical buttons
+//Numerical buttons with keyboard support
 let zero = document.getElementById("zero");
 zero.addEventListener("click", () => {
     if (newEquation == true) {
@@ -99,6 +99,23 @@ zero.addEventListener("click", () => {
         input.nodeValue = displayValue.join("");
     }
 });
+window.addEventListener("keydown", (event) => {
+    if (event.key == "0") {
+        if (newEquation == true) {
+            fullClear();
+            displayValue.push(0);
+            input.nodeValue = displayValue.join("");
+            newEquation = false;
+        } else if (negativeNumber == true) {
+            displayValue.push(0);
+            input.nodeValue = -Math.abs(displayValue.join(""));
+            } else {
+            displayValue.push(0);
+            input.nodeValue = displayValue.join("");
+        }
+    }
+});
+
 let one = document.getElementById("one");
 one.addEventListener("click", () => {
     if (newEquation == true) {
@@ -114,6 +131,23 @@ one.addEventListener("click", () => {
         input.nodeValue = displayValue.join("");
     }
 });
+window.addEventListener("keydown", (event) => {
+    if (event.key == "1") {
+        if (newEquation == true) {
+            fullClear();
+            displayValue.push(1);
+            input.nodeValue = displayValue.join("");
+            newEquation = false;
+        } else if (negativeNumber == true) {
+            displayValue.push(1);
+            input.nodeValue = -Math.abs(displayValue.join(""));
+            } else {
+            displayValue.push(1);
+            input.nodeValue = displayValue.join("");
+        }
+    }
+});
+
 let two = document.getElementById("two");
 two.addEventListener("click", () => {
     if (newEquation == true) {
@@ -129,6 +163,23 @@ two.addEventListener("click", () => {
         input.nodeValue = displayValue.join("");
     }
 });
+window.addEventListener("keydown", (event) => {
+    if (event.key == "2") {
+        if (newEquation == true) {
+            fullClear();
+            displayValue.push(2);
+            input.nodeValue = displayValue.join("");
+            newEquation = false;
+        } else if (negativeNumber == true) {
+            displayValue.push(2);
+            input.nodeValue = -Math.abs(displayValue.join(""));
+            } else {
+            displayValue.push(2);
+            input.nodeValue = displayValue.join("");
+        }
+    }
+});
+
 let three = document.getElementById("three");
 three.addEventListener("click", () => {
     if (newEquation == true) {
@@ -144,6 +195,23 @@ three.addEventListener("click", () => {
         input.nodeValue = displayValue.join("");
     }
 });
+window.addEventListener("keydown", (event) => {
+    if (event.key == "3") {
+        if (newEquation == true) {
+            fullClear();
+            displayValue.push(3);
+            input.nodeValue = displayValue.join("");
+            newEquation = false;
+        } else if (negativeNumber == true) {
+            displayValue.push(3);
+            input.nodeValue = -Math.abs(displayValue.join(""));
+            } else {
+            displayValue.push(3);
+            input.nodeValue = displayValue.join("");
+        }
+    }
+});
+
 let four = document.getElementById("four");
 four.addEventListener("click", () => {
     if (newEquation == true) {
@@ -159,6 +227,23 @@ four.addEventListener("click", () => {
         input.nodeValue = displayValue.join("");
     }
 });
+window.addEventListener("keydown", (event) => {
+    if (event.key == "4") {
+        if (newEquation == true) {
+            fullClear();
+            displayValue.push(4);
+            input.nodeValue = displayValue.join("");
+            newEquation = false;
+        } else if (negativeNumber == true) {
+            displayValue.push(4);
+            input.nodeValue = -Math.abs(displayValue.join(""));
+            } else {
+            displayValue.push(4);
+            input.nodeValue = displayValue.join("");
+        }
+    }
+});
+
 let five = document.getElementById("five");
 five.addEventListener("click", () => {
     if (newEquation == true) {
@@ -174,6 +259,23 @@ five.addEventListener("click", () => {
         input.nodeValue = displayValue.join("");
     }
 });
+window.addEventListener("keydown", (event) => {
+    if (event.key == "5") {
+        if (newEquation == true) {
+            fullClear();
+            displayValue.push(5);
+            input.nodeValue = displayValue.join("");
+            newEquation = false;
+        } else if (negativeNumber == true) {
+            displayValue.push(5);
+            input.nodeValue = -Math.abs(displayValue.join(""));
+            } else {
+            displayValue.push(5);
+            input.nodeValue = displayValue.join("");
+        }
+    }
+});
+
 let six = document.getElementById("six");
 six.addEventListener("click", () => {
     if (newEquation == true) {
@@ -189,6 +291,23 @@ six.addEventListener("click", () => {
         input.nodeValue = displayValue.join("");
     }
 });
+window.addEventListener("keydown", (event) => {
+    if (event.key == "6") {
+        if (newEquation == true) {
+            fullClear();
+            displayValue.push(6);
+            input.nodeValue = displayValue.join("");
+            newEquation = false;
+        } else if (negativeNumber == true) {
+            displayValue.push(6);
+            input.nodeValue = -Math.abs(displayValue.join(""));
+            } else {
+            displayValue.push(6);
+            input.nodeValue = displayValue.join("");
+        }
+    }
+});
+
 let seven = document.getElementById("seven");
 seven.addEventListener("click", () => {
     if (newEquation == true) {
@@ -204,6 +323,23 @@ seven.addEventListener("click", () => {
         input.nodeValue = displayValue.join("");
     }
 });
+window.addEventListener("keydown", (event) => {
+    if (event.key == "7") {
+        if (newEquation == true) {
+            fullClear();
+            displayValue.push(7);
+            input.nodeValue = displayValue.join("");
+            newEquation = false;
+        } else if (negativeNumber == true) {
+            displayValue.push(7);
+            input.nodeValue = -Math.abs(displayValue.join(""));
+            } else {
+            displayValue.push(7);
+            input.nodeValue = displayValue.join("");
+        }
+    }
+});
+
 let eight = document.getElementById("eight");
 eight.addEventListener("click", () => {
     if (newEquation == true) {
@@ -218,6 +354,23 @@ eight.addEventListener("click", () => {
         displayValue.push(8);
         input.nodeValue = displayValue.join("");    }
 });
+window.addEventListener("keydown", (event) => {
+    if (event.key == "8") {
+        if (newEquation == true) {
+            fullClear();
+            displayValue.push(8);
+            input.nodeValue = displayValue.join("");
+            newEquation = false;
+        } else if (negativeNumber == true) {
+            displayValue.push(8);
+            input.nodeValue = -Math.abs(displayValue.join(""));
+            } else {
+            displayValue.push(8);
+            input.nodeValue = displayValue.join("");
+        }
+    }
+});
+
 let nine = document.getElementById("nine");
 nine.addEventListener("click", () => {
     if (newEquation == true) {
@@ -233,6 +386,22 @@ nine.addEventListener("click", () => {
         input.nodeValue = displayValue.join("");
     }
 });
+window.addEventListener("keydown", (event) => {
+    if (event.key == "9") {
+        if (newEquation == true) {
+            fullClear();
+            displayValue.push(9);
+            input.nodeValue = displayValue.join("");
+            newEquation = false;
+        } else if (negativeNumber == true) {
+            displayValue.push(9);
+            input.nodeValue = -Math.abs(displayValue.join(""));
+            } else {
+            displayValue.push(9);
+            input.nodeValue = displayValue.join("");
+        }
+    }
+});
 //Decimal button
 let decimal = document.getElementById("decimal");
 decimal.addEventListener("click", () => {
@@ -245,6 +414,20 @@ decimal.addEventListener("click", () => {
     } else {
         displayValue.push(".");
         input.nodeValue = displayValue.join("");
+    }
+});
+window.addEventListener("keydown", (event) => {
+    if (event.key == ".") {
+        if (displayValue.includes(".")) {
+            return;
+        } else if (displayValue == 0) {
+            displayValue.push(0);
+            displayValue.push(".");
+            input.nodeValue = displayValue.join("");
+        } else {
+            displayValue.push(".");
+            input.nodeValue = displayValue.join("");
+        }
     }
 });
     
@@ -304,6 +487,24 @@ function toAdd() {
         displayValue = [];
     }
 };
+window.addEventListener("keydown", (event) => {
+    if (event.key == "+") {
+        if (operator == "add") {
+            num2 = arrayConversion();
+            toEqual();
+            num1 = arrayConversion() || num1;
+            displayValue = [];
+        } else {
+            num2 = arrayConversion();
+            toEqual();
+            operator = "add";
+            num1 = arrayConversion() || num1;
+            negativeNumber = false;
+            displayValue.push("+");
+            input.nodeValue = num1 + "+";
+            displayValue = [];
+        }
+}});
 //Minus operation
 let minus = document.getElementById("subtract");
 minus.addEventListener("click", toSubtract);
@@ -324,6 +525,24 @@ function toSubtract() {
         displayValue = [];
     }
 };
+window.addEventListener("keydown", (event) => {
+    if (event.key == "-") {
+        if (operator == "subtract") {
+            num2 = arrayConversion();
+            toEqual();
+            num1 = arrayConversion() || num1;
+            displayValue = [];
+        } else {
+            num2 = arrayConversion();
+            toEqual();
+            operator = "subtract";
+            num1 = arrayConversion() || num1;
+            negativeNumber = false;
+            displayValue.push("-");
+            input.nodeValue = num1 + "-";
+            displayValue = [];
+        }
+}});
 //Multiply operation
 let product = document.getElementById("multiply");
 product.addEventListener("click", toMultiply);
@@ -344,6 +563,24 @@ function toMultiply() {
         displayValue = [];
     }
 };
+window.addEventListener("keydown", (event) => {
+    if (event.key == "*") {
+        if (operator == "multiply") {
+            num2 = arrayConversion();
+            toEqual();
+            num1 = arrayConversion() || num1;
+            displayValue = [];
+        } else {
+            num2 = arrayConversion();
+            toEqual();
+            operator = "multiply";
+            num1 = arrayConversion() || num1;
+            negativeNumber = false;
+            displayValue.push("*");
+            input.nodeValue = num1 + "*";
+            displayValue = [];
+        }
+}});
 //Divide operation
 let quotient = document.getElementById("divide");
 quotient.addEventListener("click", toDivide);
@@ -364,6 +601,24 @@ function toDivide() {
         displayValue = [];
     }
 };
+window.addEventListener("keydown", (event) => {
+    if (event.key == "/") {
+        if (operator == "divide") {
+            num2 = arrayConversion();
+            toEqual();
+            num1 = arrayConversion() || num1;
+            displayValue = [];
+        } else {
+            num2 = arrayConversion();
+            toEqual();
+            operator = "divide";
+            num1 = arrayConversion() || num1;
+            negativeNumber = false;
+            displayValue.push("/");
+            input.nodeValue = num1 + "/";
+            displayValue = [];
+        }
+}});
 //Power operation
 let exponent = document.getElementById("exponent");
 exponent.addEventListener("click", () => {
@@ -375,6 +630,16 @@ exponent.addEventListener("click", () => {
     displayValue = [];
     num2 = "";
 });
+window.addEventListener("keydown", (event) => {
+    if (event.key == "^") {
+        operator = "power";
+        num1 = arrayConversion() || num1;
+        negativeNumber = false;
+        displayValue.push("^");
+        input.nodeValue = num1 + "^";
+        displayValue = [];
+        num2 = "";
+}});
 //Executes selected operation if equals button is pressed
 let equal = document.getElementById("equal");
 equal.addEventListener("click", () => {
@@ -395,6 +660,25 @@ equal.addEventListener("click", () => {
         newEquation = true;
 }
 });
+window.addEventListener("keydown", (event) => {
+    if (event.code == "Enter") {
+        if (num1 != "" && operator != "power") {
+            num2 = arrayConversion();
+            operate(operator, num1, num2);
+            num1 = "";
+            newEquation = true;
+    } else if (num1 == "") {
+            num1 = arrayConversion();
+            operate(operator, num1, num2);
+            num1 = "";
+            newEquation = true;
+    } else if (operator == "power") {
+        num2 = arrayConversion();
+        operate(operator, num1, num2);
+        num1 = "";
+        newEquation = true;
+}
+}});
 //Executes selected operation if an operator button is pressed
 function toEqual() {
     if (num2 == "") {
