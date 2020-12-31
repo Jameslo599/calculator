@@ -81,17 +81,3 @@ body {
     line-height: 3ch;
     color: rgb(110, 110, 228);
 }
-@media only screen and (max-width: 400px) {
-    .fas.fa-backspace {
-        font-size: x-large;
-        margin-left: -5px;
-       }
-    #instructions {
-        text-align: center;
-        font-weight: bold;
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        line-height: 3ch;
-        font-size: 15px;
-        color: rgb(110, 110, 228);
-    }
-}
