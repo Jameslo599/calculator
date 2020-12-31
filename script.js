@@ -68,11 +68,16 @@ function arrayConversion() {
 }
 let input = document.createTextNode(0);
 display.appendChild(input);
-//Stores previous input number on calculator screen
+//Preserves previous input number on calculator screen
 function removeDisplay() {
     input.nodeValue = num1;
     displayValue = [];
 }
+window.addEventListener("keydown", (event) => {
+    if (event.key == "c") {
+        input.nodeValue = num1;
+        displayValue = [];
+}});
 //Completely resets calculator
 function fullClear() {
     input.nodeValue = 0;
@@ -83,6 +88,16 @@ function fullClear() {
     negativeNumber = false;
     newEquation = false;
 }
+window.addEventListener("keydown", (event) => {
+    if (event.code == "Delete") {
+        input.nodeValue = 0;
+        displayValue = [];
+        num1 = "";
+        num2 = "";
+        operator = "";
+        negativeNumber = false;
+        newEquation = false;
+}});
 //Numerical buttons with keyboard support
 let zero = document.getElementById("zero");
 zero.addEventListener("click", () => {
@@ -661,7 +676,7 @@ equal.addEventListener("click", () => {
 }
 });
 window.addEventListener("keydown", (event) => {
-    if (event.code == "Enter") {
+    if (event.code == "Enter" || event.key == "Enter") {
         if (num1 != "" && operator != "power") {
             num2 = arrayConversion();
             operate(operator, num1, num2);
